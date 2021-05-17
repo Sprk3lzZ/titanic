@@ -1,7 +1,11 @@
 import pandas
 from sklearn.model_selection import *
 from sklearn.linear_model  import *
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 from numpy import * 
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
 def distance(x1 = 0,x2 = 0):
     """
     Arguments: [x1:(float) first position, x2:(float) second position]
@@ -28,7 +32,7 @@ def read_infoStr(csv, param, reference):
     return closerID,closerDist,closerValue
 tab = pandas.read_csv("titanic.csv", sep = ',')
 #tab = tab.values.tolist()
-newtab = tab.loc[:,['PassengerId','Survived','Pclass','Sex','Age','Embarked']]
+newtab = tab.loc[:,['Survived','Pclass','Sex','Age','Embarked']]
 newtab.Age = newtab.Age.fillna(0)
 for i in range(len(newtab)):
     if(newtab.Sex[i] == 'male'):
@@ -41,14 +45,22 @@ for i in range(len(newtab)):
         newtab.Embarked[i] = 1
     elif(newtab.Embarked[i] == 'Q'):
         newtab.Embarked[i] = 2
-    if(newtab.Age[i] == 0):
-        for e in range(int(len(newtab)/2)):
-            if(newtab.Age[i-e] != 0 and newtab.Age[i+e] != 0):
-                newtab.Age[i] = int((newtab.Age[i-e] + newtab.Age[i+e])/2)
-                break
+    else:
+        newtab.Embarked[i] = 3
 
-print(newtab)
+
+
+
+newtab2 = newtab.iloc[:,:1]
+tab2 = newtab.iloc[:,1:]
+X_train, X_test, y_train, y_test = train_test_split(tab2, newtab2, test_size=0.33, random_state=42)
+reg = model.fit(X_train, y_train)
+pre = model.predict(X_test)
+new = accuracy_score(y_test, pre)
+print(X_train, X_test, y_train, y_test,reg,pre)
+print(tab2)
+print(newtab2)
 print(type(tab))
-print(tab)
+print(tab,new)
 
 main("titanic.csv", 1, 94)
