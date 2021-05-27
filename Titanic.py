@@ -14,39 +14,39 @@ newtab.Age = newtab.Age.fillna(0)
 
 def modif():
     """
-
     :return:
     """
 
-    newtab = tab.loc[:, ['Survived', 'Pclass', 'Sex', 'Age', 'Embarked']]
-    newtab.Age = newtab.Age.fillna(0)
+    tabmodif = tab.loc[:, ['Survived', 'Pclass', 'Sex', 'Age', 'Embarked']]
+    tabmodif.Age = tabmodif.Age.fillna(0)
 
-    for i in range(len(newtab)):
-        if newtab.Sex[i] == 'male':
-            newtab.Sex[i] = 0
-        elif newtab.Sex[i] == 'female':
-            newtab.Sex[i] = 1
-        if newtab.Embarked[i] == 'S':
-            newtab.Embarked[i] = 0
-        elif newtab.Embarked[i] == 'C':
-            newtab.Embarked[i] = 1
-        elif newtab.Embarked[i] == 'Q':
-            newtab.Embarked[i] = 2
+    for i in range(len(tabmodif)):
+        if tabmodif.Sex[i] == 'male':
+            tabmodif.Sex[i] = 0
+        elif tabmodif.Sex[i] == 'female':
+            tabmodif.Sex[i] = 1
+        if tabmodif.Embarked[i] == 'S':
+            tabmodif.Embarked[i] = 0
+        elif tabmodif.Embarked[i] == 'C':
+            tabmodif.Embarked[i] = 1
+        elif tabmodif.Embarked[i] == 'Q':
+            tabmodif.Embarked[i] = 2
         else:
-            newtab.Embarked[i] = 3
+            tabmodif.Embarked[i] = 3
+    return tabmodif
 
 def main(k,longueur, largeur,a,b):
     """
-
     :return:
     """
-    modif()
-    x = newtab.loc[:, "Pclass"]
-    y = newtab.loc[:, "Sex"]
-    z = newtab.loc[:, "Age"]
-    w = newtab.loc[:, "Embarked"]
+    tabt = modif()
+    x = tabt.loc[:, "Pclass"]
+    y = tabt.loc[:, "Sex"]
+    z = tabt.loc[:, "Age"]
+    w = tabt.loc[:, "Embarked"]
     tab2 = list(zip(x,y,z,w))
-    lab = newtab.loc[:, "Survived"]
+    print(tab2)
+    lab = tabt.loc[:, "Survived"]
     model = KNeighborsClassifier(n_neighbors=k)
     print("model v1: ", model)
     model.fit(tab2, lab)
@@ -56,4 +56,4 @@ def main(k,longueur, largeur,a,b):
 
 
 
-main(2,2,2,2,2)
+main(5,1,0,80,1)
