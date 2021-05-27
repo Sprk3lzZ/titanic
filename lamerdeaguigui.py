@@ -1,3 +1,4 @@
+  
 import pandas
 from sklearn.model_selection import *
 from sklearn.linear_model import *
@@ -18,7 +19,6 @@ def distance(x1=0, x2=0):
 
 def main(file, k, age):
     """
-
     :param file:
     :param k:
     :param age:
@@ -31,7 +31,6 @@ def main(file, k, age):
 
 def get_info(file):
     """
-
     :param file:
     :return:
     """
@@ -40,7 +39,6 @@ def get_info(file):
 
 def read_info(csv, param, reference):
     """
-
     :param csv:
     :param param:
     :param reference:
@@ -55,7 +53,6 @@ def read_info(csv, param, reference):
 
 def read_infoStr(csv, param, reference):
     """
-
     :param csv:
     :param param:
     :param reference:
@@ -73,6 +70,13 @@ tab = pandas.read_csv("titanic.csv", sep=',')
 newtab = tab.loc[:, ['Survived', 'Pclass', 'Sex', 'Age', 'Embarked']]
 newtab.Age = newtab.Age.fillna(0)
 for i in range(len(newtab)):
+    if(newtab.Age[i] == 0):
+        nb = 0
+        for e in range(i):
+            nb += newtab.Age[e]
+        nb = nb/(i+1)
+        print("i: ",nb)
+        newtab.Age[i] = int(nb)
     if (newtab.Sex[i] == 'male'):
         newtab.Sex[i] = 0
     elif (newtab.Sex[i] == 'female'):
@@ -84,7 +88,7 @@ for i in range(len(newtab)):
     elif (newtab.Embarked[i] == 'Q'):
         newtab.Embarked[i] = 2
     else:
-        newtab.Embarked[i] = 3
+        newtab.Embarked[i] = newtab.Embarked[i-1]
 
 newtab2 = newtab.iloc[:, :1]
 tab2 = newtab.iloc[:, 1:]
