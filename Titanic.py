@@ -66,7 +66,7 @@ def main(k, classe,sexe,age,embarquement):
     if prediction == 0:
         print("Desolé, mais vous n'auriez pas survecu...")
     else:
-        print("Super ! Vous avez l'étoffe de la personne qui aurait survécu !")
+        print("Super ! Vous avez l'étoffe d'un survivant !")
 
 
 def questions():
