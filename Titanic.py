@@ -16,7 +16,7 @@ def starter():
 
 def modif():
     """
-    Fonctin qui modifie et selectionne les informations les plus utiles pour la recherche.
+    Fonction qui modifie et selectionne les informations les plus utiles pour la recherche.
     :return: list
     """
 
@@ -50,7 +50,7 @@ def modif():
 def main(k, classe,sexe,age,embarquement):
     """
     Fonction qui teste si la personne qui entre ses informations serait en vie après le drame du titanic
-    :return: sting
+    :return: string ( résultat )
     """
     tabt = modif()
     t_classe = tabt.loc[:, "Pclass"]                         #Créations des tableaux par catégorie.
@@ -72,7 +72,6 @@ def main(k, classe,sexe,age,embarquement):
 def questions():
     """
     Fonction qui demande les informations à l'utilisateur.
-    :return:
     """
 
     classe = float(input("Veuilliez rentrer votre classe : "))
