@@ -74,10 +74,10 @@ def questions():
     Fonction qui demande les informations à l'utilisateur.
     """
 
-    classe = float(input("Veuilliez rentrer votre classe : "))
+    classe = float(input("Veuilliez rentrer votre classe (1, 2 ou 3) : "))
     sexe = float(input("Veuilliez rentrer votre sexe ( 1 : femme / 0 : homme ) : "))
     age = float(input("Veuilliez rentrer votre age : "))
-    embarquement = float(input("Veuilliez rentrer votre numero d'embarquement : "))
+    embarquement = float(input("Veuilliez rentrer votre numero d'embarquement (0, 1 ou 2) : "))
 
     main(5,classe,sexe,age,embarquement)
 
