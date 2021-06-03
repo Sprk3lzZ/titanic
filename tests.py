@@ -55,7 +55,7 @@ def calcul(newtab):
     """
     newtab2 = newtab.iloc[:, :1]
     tab2 = newtab.iloc[:, 1:]
-    X_train, X_test, y_train, y_test = train_test_split(tab2, newtab2, test_size=0.5, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(tab2, newtab2, test_size=0.5, random_state=36)
     reg = model.fit(X_train, y_train)
     pre = model.predict(X_test)
     pourcentage = accuracy_score(y_test, pre)
